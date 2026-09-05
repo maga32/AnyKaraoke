@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#121018">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title data-i18n="remoteTitle">AnyKaraoke 리모컨</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/remote.css">
+</head>
+<body>
+  <main class="remote" id="remote-app">
+    <header class="remote-header">
+      <div>
+        <span class="eyebrow">ANYKARAOKE</span>
+        <h1>REMOTE</h1>
+      </div>
+      <span class="connection" id="connection" data-state="connecting" data-i18n="connecting">연결 중</span>
+    </header>
+
+    <section class="error-card" id="room-error" hidden>
+      <h2 data-i18n="roomNotFound">방을 찾을 수 없습니다</h2>
+      <p data-i18n="scanAgain">메인 화면의 QR 코드를 다시 스캔해 주세요.</p>
+      <a href="/" data-i18n="openMain">메인 화면 열기</a>
+    </section>
+
+    <div id="controls">
+      <section class="reserve-section" aria-labelledby="reserve-heading">
+        <div class="section-title"><h2 id="reserve-heading" data-i18n="reserveSong">곡 예약</h2><span>YOUTUBE</span></div>
+        <form id="reserve-form" novalidate>
+          <label for="youtube-url" data-i18n="youtubeLink">YouTube 링크</label>
+          <div class="input-row">
+            <input id="youtube-url" name="url" type="url" inputmode="url" autocomplete="url" placeholder="youtube.com/watch?v=…" required>
+            <button type="submit" id="lookup-button" data-i18n="check">확인</button>
+          </div>
+          <div class="title-field" id="title-field" hidden>
+            <label for="song-title" data-i18n="songTitle">곡 제목</label>
+            <input id="song-title" name="title" type="text" maxlength="160" placeholder="곡 제목을 입력하세요" data-i18n-placeholder="enterSongTitle">
+          </div>
+          <div class="preview" id="preview" aria-hidden="true" hidden>
+            <div id="preview-player"></div>
+          </div>
+          <p class="form-message" id="form-message" role="status"></p>
+          <div class="reserve-actions" id="reserve-actions" hidden>
+            <button type="button" id="normal-reserve" class="primary" data-i18n="reserve">예약</button>
+            <button type="button" id="priority-reserve" class="priority" data-i18n="priorityReserve">우선 예약</button>
+            <button type="button" id="favorite-add" class="favorite" data-i18n="addFavorite">즐겨찾기</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="favorites-section">
+        <button type="button" class="favorites-toggle" id="favorites-toggle" aria-expanded="false" aria-controls="favorites-content">
+          <span data-i18n="favorites">즐겨찾기</span>
+          <span class="favorites-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div id="favorites-content" hidden>
+          <ul id="favorites-list" class="favorites-list"></ul>
+          <p id="favorites-empty" class="queue-empty" data-i18n="noFavorites">즐겨찾기한 곡이 없습니다</p>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="play-heading">
+        <div class="section-title"><h2 id="play-heading" data-i18n="playbackControl">재생 제어</h2></div>
+        <div class="button-grid playback-grid">
+          <button type="button" data-action="play" class="primary"><span aria-hidden="true">▶</span><span data-i18n="play">재생</span></button>
+          <button type="button" data-action="cancel_current" class="danger"><span aria-hidden="true">■</span><span data-i18n="cancel">취소</span></button>
+          <button type="button" data-action="pause"><span aria-hidden="true">Ⅱ</span><span data-i18n="pause">일시정지</span></button>
+          <button type="button" data-action="seek_forward"><span aria-hidden="true">↷</span><span data-i18n="phraseJump">마디점프</span></button>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="key-heading">
+        <div class="section-title"><h2 id="key-heading" data-i18n="keyControl">키 조절</h2></div>
+        <div class="button-grid key-grid">
+          <button type="button" data-action="key_down"><span aria-hidden="true">♭</span><span data-i18n="keyDown">키 내림</span></button>
+          <button type="button" data-action="key_reset"><span aria-hidden="true">●</span><span data-i18n="originalKey">원키</span></button>
+          <button type="button" data-action="key_up"><span aria-hidden="true">♯</span><span data-i18n="keyUp">키 올림</span></button>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="tempo-heading">
+        <div class="section-title"><h2 id="tempo-heading" data-i18n="tempoControl">템포 조절</h2></div>
+        <div class="button-grid key-grid">
+          <button type="button" data-action="tempo_down"><span aria-hidden="true">−</span><span data-i18n="tempoDown">느리게</span></button>
+          <button type="button" data-action="tempo_reset"><span aria-hidden="true">●</span><span data-i18n="normalTempo">원속도</span></button>
+          <button type="button" data-action="tempo_up"><span aria-hidden="true">+</span><span data-i18n="tempoUp">빠르게</span></button>
+        </div>
+      </section>
+
+      <section class="control-section" aria-labelledby="display-heading">
+        <div class="section-title"><h2 id="display-heading" data-i18n="mainDisplay">메인 화면</h2></div>
+        <div class="button-grid display-grid">
+          <button type="button" data-action="open_list" data-i18n="openList">목록 보기</button>
+          <button type="button" data-action="close_list" data-i18n="closeList">목록 닫기</button>
+        </div>
+      </section>
+
+      <section class="queue-section" aria-labelledby="queue-heading">
+        <div class="section-title"><h2 id="queue-heading" data-i18n="reservationList">예약 목록</h2><span id="queue-count">0곡</span></div>
+        <ol id="queue-list" class="queue-list"></ol>
+        <p id="queue-empty" class="queue-empty" data-i18n="noReservedSongs">예약된 곡이 없습니다</p>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/assets/remote.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151119">
+  <title>AnyKoraoke Receiver</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/pitch.css">
+</head>
+<body>
+  <main>
+    <small>ANYKARAOKE AUDIO</small>
+    <h1 data-i18n="receiverTitle">음정변환 리시버</h1>
+    <p id="guide" data-i18n-html="receiverGuide">아래 버튼을 누른 뒤 <strong>AnyKaraoke 탭</strong>을 선택해 주세요.</p>
+    <button type="button" id="start" data-i18n="startAudioShare">오디오 공유 시작</button>
+    <p id="status" role="status" data-i18n="waiting">대기 중</p>
+    <p id="unsupported-help" class="unsupported-help" hidden data-i18n-html="unsupportedHelp">다른 브라우저 또는 <a href="https://github.com/maga32/AnyKaraoke/releases/latest" target="_blank" rel="noopener noreferrer">App</a>을 이용해주세요.</p>
+    <p class="footnote" data-i18n="keepReceiverOpen">AnyKaraoke를 사용하는 동안 이 창을 닫지 마세요.</p>
+  </main>
+  <script type="module" src="/assets/pitch.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+:root { color-scheme:dark; font-family:"Noto Sans KR",system-ui,sans-serif; background:#0b090d; }
+* { box-sizing:border-box; }
+body { min-height:100vh; margin:0; display:grid; place-items:center; background:radial-gradient(circle at 50% 20%,#2c1727,#0b090d 65%); color:#eee8f0; }
+main { width:min(440px,calc(100vw - 36px)); text-align:center; }
+small { color:#fc345c; font-weight:900; letter-spacing:.17em; }
+h1 { margin:9px 0 12px; font-size:30px; }
+p { color:#aaa4b2; line-height:1.65; }
+strong { color:#fff; }
+button { width:100%; min-height:52px; margin-top:12px; border:1px solid #fc345c; border-radius:12px; background:#d92550; color:white; font:700 16px inherit; cursor:pointer; }
+button:disabled { opacity:.55; cursor:wait; }
+button:focus-visible { outline:2px solid white; outline-offset:3px; }
+#status { min-height:24px; margin:16px 0 0; color:#ddd5e0; font-weight:700; }
+#status[data-state="active"] { color:#2ce09b; }
+#status[data-state="error"] { color:#ff6683; }
+.unsupported-help[hidden] { display:none; }
+.unsupported-help { margin:8px 0 0; color:#aaa4b2; font-size:14px; }
+.unsupported-help a { color:#fc6687; font-weight:700; }
+.footnote { margin-top:22px; color:#716b77; font-size:12px; }

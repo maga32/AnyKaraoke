@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AnyKaraoke</string>
+    <string name="capture_explanation">Audio capture is required to transform the sound for pitch control.</string>
+    <string name="confirm">Confirm</string>
+    <string name="browser_missing">No browser is available to open this link.</string>
+    <string name="capture_permission_required">Audio capture permission is required.</string>
+    <string name="capture_preparing">Preparing audio capture</string>
+    <string name="notification_channel_name">Pitch processing</string>
+    <string name="notification_channel_description">AnyKaraoke audio capture and pitch processing status</string>
+    <string name="notification_title">AnyKaraoke pitch processing</string>
+    <string name="processing_status">Key %1$s · Processing</string>
+</resources>

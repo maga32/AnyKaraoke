@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="capture_explanation">キー変更の音声変換にはオーディオキャプチャが必要です。</string>
+    <string name="confirm">確認</string><string name="browser_missing">リンクを開けるブラウザがありません。</string>
+    <string name="capture_permission_required">オーディオキャプチャの権限が必要です。</string><string name="capture_preparing">オーディオキャプチャを準備中</string>
+    <string name="notification_channel_name">音程処理</string><string name="notification_channel_description">AnyKaraokeのオーディオキャプチャと音程処理の状態</string>
+    <string name="notification_title">AnyKaraoke 音程処理</string><string name="processing_status">キー %1$s · 処理中</string>
+</resources>

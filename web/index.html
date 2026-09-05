@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#08070b">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>AnyKaraoke</title>
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+<body>
+  <main class="stage" id="stage">
+    <section class="screen" aria-label="AnyKaraoke 메인 화면" data-i18n-aria-label="mainScreen">
+      <header class="now-bar">
+        <div class="song-line current-line">
+          <span class="song-label">NOW</span>
+          <div class="title-viewport"><strong id="current-title" data-i18n="noSongs">예약된 곡이 없습니다</strong></div>
+        </div>
+        <div class="song-line next-line">
+          <span class="song-label">NEXT</span>
+          <div class="title-viewport"><span id="next-title" data-i18n="noNext">다음 곡 없음</span></div>
+        </div>
+        <div class="status-actions">
+          <span class="connection" id="connection" data-state="connecting" data-i18n="connecting">연결 중</span>
+          <button class="icon-button" id="fullscreen-button" type="button" aria-label="전체 화면" data-i18n-aria-label="fullscreen">⛶</button>
+        </div>
+      </header>
+
+      <section class="player-shell" id="player-shell" aria-label="YouTube 노래 영상" data-i18n-aria-label="youtubePlayer">
+        <div class="empty-player" id="empty-player">
+          <img class="brand-mark" src="/assets/icons/app-logo-256.webp" alt="AnyKaraoke">
+          <h1>AnyKaraoke</h1>
+          <p data-i18n="reserveAtLink">아래 링크에서 곡을 예약하세요</p>
+          <div class="quick-connect">
+            <div class="qr-frame"><div id="empty-qr"></div></div>
+            <a id="empty-remote-url" href="#" target="_blank" rel="noopener noreferrer" data-i18n="remotePreparing">리모컨 주소 준비 중</a>
+          </div>
+        </div>
+        <div id="youtube-player"></div>
+        <div class="player-notice" id="player-notice" role="status" hidden></div>
+      </section>
+    </section>
+
+    <aside class="queue-panel" id="queue-panel" aria-hidden="true">
+      <div class="reservation-heading">
+        <h2 data-i18n="queuedSongs">예약곡</h2>
+        <div class="reservation-meta">
+          <span id="queue-count">0곡</span>
+          <div class="key-display"><small>KEY</small><strong id="key-value">0</strong></div>
+        </div>
+      </div>
+      <ol class="queue-list" id="queue-list"></ol>
+      <p class="queue-empty" id="queue-empty" data-i18n="queueEmpty">예약된 다음 곡이 없습니다</p>
+
+      <div class="remote-card">
+        <div class="qr-frame"><div id="panel-qr"></div></div>
+        <div>
+          <strong data-i18n="remoteConnect">리모컨 연결</strong>
+          <a id="panel-remote-url" href="#" target="_blank" rel="noopener noreferrer" data-i18n="addressPreparing">주소 준비 중</a>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <dialog class="pitch-dialog" id="pitch-dialog">
+    <div class="pitch-dialog-content">
+      <small>DESKTOP PITCH CONTROL</small>
+      <h2 data-i18n="enablePitchTitle">키 변경 기능을 활성화할까요?</h2>
+      <p data-i18n="enablePitchBody">음원 변환을 위해 오디오 공유가 필요합니다. 확인하면 피치 처리창이 열립니다.</p>
+      <div class="pitch-dialog-actions">
+        <button type="button" id="pitch-skip" data-i18n="useWithoutPitch">키 변경 없이 사용</button>
+        <button type="button" id="pitch-enable" data-i18n="confirmStart">확인하고 시작</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script type="module" src="/assets/main.js"></script>
+</body>
+</html>

@@ -1,1 +1,22 @@
+# Editors
 .vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Android signing secrets
+*.jks
+*.keystore
+keystore.properties
+
+# Locally extracted Android packages (published through GitHub Releases)
+android/dist/

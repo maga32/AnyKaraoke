@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="capture_explanation">키 변경 기능을 사용하려면 음원 변환을 위한 오디오 캡처가 필요합니다.</string>
+    <string name="confirm">확인</string>
+    <string name="browser_missing">링크를 열 브라우저가 없습니다.</string>
+    <string name="capture_permission_required">오디오 캡처 권한이 필요합니다.</string>
+    <string name="capture_preparing">오디오 캡처 준비 중</string>
+    <string name="notification_channel_name">피치 처리</string>
+    <string name="notification_channel_description">AnyKaraoke 오디오 캡처 및 피치 처리 상태</string>
+    <string name="notification_title">AnyKaraoke 피치 처리</string>
+    <string name="processing_status">키 %1$s · 처리 중</string>
+</resources>

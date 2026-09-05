@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="capture_explanation">Se necesita capturar el audio para transformarlo y cambiar el tono.</string>
+    <string name="confirm">Confirmar</string><string name="browser_missing">No hay un navegador disponible para abrir el enlace.</string>
+    <string name="capture_permission_required">Se necesita permiso para capturar audio.</string><string name="capture_preparing">Preparando la captura de audio</string>
+    <string name="notification_channel_name">Procesamiento de tono</string><string name="notification_channel_description">Estado de captura de audio y procesamiento de tono de AnyKaraoke</string>
+    <string name="notification_title">Procesamiento de tono de AnyKaraoke</string><string name="processing_status">Tono %1$s · Procesando</string>
+</resources>

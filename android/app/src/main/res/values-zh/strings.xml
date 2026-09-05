@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="capture_explanation">使用音调调整功能需要进行音频捕获和转换。</string>
+    <string name="confirm">确认</string><string name="browser_missing">没有可打开此链接的浏览器。</string>
+    <string name="capture_permission_required">需要音频捕获权限。</string><string name="capture_preparing">正在准备音频捕获</string>
+    <string name="notification_channel_name">音调处理</string><string name="notification_channel_description">AnyKaraoke音频捕获和音调处理状态</string>
+    <string name="notification_title">AnyKaraoke音调处理</string><string name="processing_status">音调 %1$s · 处理中</string>
+</resources>
