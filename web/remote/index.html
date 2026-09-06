@@ -96,6 +96,18 @@
           <button type="button" data-action="open_list" data-i18n="openList">목록 보기</button>
           <button type="button" data-action="close_list" data-i18n="closeList">목록 닫기</button>
         </div>
+        <div class="quality-control" aria-labelledby="quality-heading">
+          <h3 id="quality-heading" data-i18n="lowQualityMode">저화질 모드</h3>
+          <p data-i18n="lowQualityHelp">영상 버퍼링이 발생하는 경우 사용해 주세요</p>
+          <div class="button-grid quality-grid">
+            <button type="button" data-action="quality_mode" data-quality-mode="original" data-i18n="qualityOriginal">원본</button>
+            <button type="button" data-action="quality_mode" data-quality-mode="1080p">1080p</button>
+            <button type="button" data-action="quality_mode" data-quality-mode="720p">720p</button>
+            <button type="button" data-action="quality_mode" data-quality-mode="480p">480p</button>
+            <button type="button" data-action="quality_mode" data-quality-mode="360p">360p</button>
+            <button type="button" data-action="quality_mode" data-quality-mode="240p">240p</button>
+          </div>
+        </div>
       </section>
 
       <section class="queue-section" aria-labelledby="queue-heading">

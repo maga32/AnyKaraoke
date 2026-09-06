@@ -66,6 +66,21 @@ for (const [language, values] of Object.entries(favoriteTranslations)) {
   favoriteKeys.forEach((key, index) => { messages[language][key] = values[index]; });
 }
 
+const qualityKeys = ["qualityMode","qualityOriginal","lowQualityMode","lowQualityHelp"];
+const qualityTranslations = {
+  ko:["화질 모드","원본","저화질 모드","영상 버퍼링이 발생하는 경우 사용해 주세요"],
+  en:["Quality mode","Original","Low quality mode","Use this if the video keeps buffering"],
+  ja:["画質モード","オリジナル","低画質モード","動画のバッファリングが発生する場合に使用してください"],
+  zh:["画质模式","原始","低画质模式","视频频繁缓冲时请使用此功能"],
+  es:["Modo de calidad","Original","Modo de baja calidad","Úsalo si el vídeo se detiene para cargar"],
+  pt:["Modo de qualidade","Original","Modo de baixa qualidade","Use se o vídeo ficar parando para carregar"],
+  id:["Mode kualitas","Asli","Mode kualitas rendah","Gunakan jika video sering mengalami buffering"],
+  fr:["Mode de qualité","Original","Mode basse qualité","Utilisez ce mode si la vidéo se met souvent en mémoire tampon"]
+};
+for (const [language, values] of Object.entries(qualityTranslations)) {
+  qualityKeys.forEach((key, index) => { messages[language][key] = values[index]; });
+}
+
 const requested = [...(navigator.languages || []), navigator.language || "en"];
 export const locale = requested.map(value => value.toLowerCase().split("-")[0]).find(value => messages[value]) || "en";
 document.documentElement.lang = locale;

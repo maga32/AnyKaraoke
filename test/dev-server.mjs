@@ -4,7 +4,7 @@ import { createServer } from "node:http";
 import { extname, join, normalize, sep } from "node:path";
 
 const root = join(process.cwd(), "web");
-const host = "127.0.0.1";
+const host = process.env.ANYKARAOKE_HOST || "0.0.0.0";
 const port = Number(process.env.PORT || 5500);
 const types = {
   ".css": "text/css; charset=utf-8",
@@ -18,9 +18,9 @@ const types = {
   ".webp": "image/webp"
 };
 
-createServer(async (request, response) => {
+const server = createServer(async (request, response) => {
   try {
-    const pathname = decodeURIComponent(new URL(request.url, `http://${host}`).pathname);
+    const pathname = decodeURIComponent(new URL(request.url, `http://${request.headers.host || "localhost"}`).pathname);
     const relative = normalize(pathname).replace(/^[/\\]+/, "");
     let file = join(root, relative);
     if (file !== root && !file.startsWith(`${root}${sep}`)) throw new Error("Invalid path");
@@ -32,6 +32,21 @@ createServer(async (request, response) => {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
     response.end("Not Found");
   }
-}).listen(port, host, () => {
-  console.log(`AnyKaraoke: http://${host}:${port}/`);
+});
+
+server.on("error", error => {
+  if (error.code === "EADDRINUSE") {
+    console.error(`Port ${port} is already in use. Stop the previous server and run npm run dev again.`);
+  } else {
+    console.error(`Could not start AnyKaraoke: ${error.message}`);
+  }
+  process.exitCode = 1;
+});
+
+server.listen({ port, host, ipv6Only:false }, () => {
+  console.log(`AnyKaraoke: http://127.0.0.1:${port}/`);
+  if (host === "0.0.0.0") {
+    console.log(`AnyKaraoke LAN: http://<this-device-LAN-IP>:${port}/`);
+    console.log("Listening on all IPv4 network interfaces.");
+  }
 });

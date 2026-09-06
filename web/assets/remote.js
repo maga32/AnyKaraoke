@@ -344,7 +344,9 @@ document.querySelectorAll("[data-action]").forEach(button => {
   button.addEventListener("click", async () => {
     button.disabled = true;
     const action = button.dataset.action;
-    const payload = action === "seek_forward" ? { action, seconds: 5 } : { action };
+    let payload = { action };
+    if (action === "seek_forward") payload = { action, seconds: 5 };
+    if (action === "quality_mode") payload = { action, mode: button.dataset.qualityMode };
     const ok = await send("command", payload);
     if (ok) toast(t("commandSent", { command: button.textContent.trim() }));
     setTimeout(() => { button.disabled = false; }, 350);

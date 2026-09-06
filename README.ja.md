@@ -4,7 +4,11 @@
 
 [English](README.md) · [한국어](README.ko.md) · [日本語](README.ja.md)
 
-AnyKaraokeは、ブラウザをカラオケのメイン画面として使い、別のスマートフォンをリモコンとして利用できるサービスです。専用のアプリケーションサーバーを必要とせず、HTML、CSS、JavaScriptで動作します。埋め込み再生が許可されたYouTube動画を再生し、[dweet.cc](https://dweet.cc/)を通じて操作メッセージを送受信します。
+AnyKaraokeがあれば、どこでも楽しいカラオケが始まります。
+
+家族と過ごす自宅でも、友達とのパーティーでも、旅行先やドライブ中でも、お好きな画面をカラオケにして楽しめます。
+
+参加する全員が、それぞれのスマートフォンをリモコンとして使えます。1台のリモコンを回す必要はなく、誰でも自分のスマートフォンから簡単に曲を予約して操作できます。
 
 AnyKaraokeを開く：[https://AnyKaraoke.pages.dev/](https://AnyKaraoke.pages.dev/)
 

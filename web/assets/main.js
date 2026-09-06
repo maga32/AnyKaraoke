@@ -10,8 +10,9 @@ const elements = {
   queueList: document.querySelector("#queue-list"),
   queueEmpty: document.querySelector("#queue-empty"),
   queueCount: document.querySelector("#queue-count"),
-  keyValue: document.querySelector("#key-value"),
+  qualityModeValue: document.querySelector("#quality-mode-value"),
   queuePanel: document.querySelector("#queue-panel"),
+  playerShell: document.querySelector("#player-shell"),
   emptyPlayer: document.querySelector("#empty-player"),
   playerNotice: document.querySelector("#player-notice"),
   connection: document.querySelector("#connection"),
@@ -80,11 +81,20 @@ let channel;
 let connectionState = "connecting";
 let keyFlashTimer;
 let tempo = 1;
+let qualityMode = "original";
+
+const QUALITY_SIZES = {
+  "1080p": [1920, 1080],
+  "720p": [1280, 720],
+  "480p": [854, 480],
+  "360p": [640, 360],
+  "240p": [426, 240]
+};
 
 function drawQr(target) {
   if (!window.QRCode) return;
   target.replaceChildren();
-  new window.QRCode(target, { text: remoteUrl.href, width: 148, height: 148, colorDark: "#08070b", colorLight: "#ffffff", correctLevel: window.QRCode.CorrectLevel.M });
+  new window.QRCode(target, { text: remoteUrl.href, width: 256, height: 256, colorDark: "#08070b", colorLight: "#ffffff", correctLevel: window.QRCode.CorrectLevel.M });
 }
 drawQr(elements.emptyQr);
 drawQr(elements.panelQr);
@@ -105,7 +115,7 @@ function render() {
   const current = songs[0];
   elements.currentTitle.textContent = current?.title || t("noSongs");
   elements.nextTitle.textContent = songs[1]?.title || t("noNext");
-  elements.keyValue.textContent = key > 0 ? `+${key}` : String(key);
+  elements.qualityModeValue.textContent = qualityMode === "original" ? t("qualityOriginal") : qualityMode;
   elements.queueCount.textContent = t("songsCount", { count: Math.max(0, songs.length - 1) });
   elements.queueList.replaceChildren();
 
@@ -135,6 +145,29 @@ function setListOpen(open) {
   listOpen = open;
   elements.stage.classList.toggle("list-open", open);
   elements.queuePanel.setAttribute("aria-hidden", String(!open));
+}
+
+function updatePlayerSizing() {
+  const size = QUALITY_SIZES[qualityMode];
+  if (!size) {
+    elements.playerShell.style.removeProperty("--quality-width");
+    elements.playerShell.style.removeProperty("--quality-height");
+    elements.playerShell.style.removeProperty("--quality-scale");
+    return;
+  }
+  const [width, height] = size;
+  const scale = Math.max(elements.playerShell.clientWidth / width, elements.playerShell.clientHeight / height);
+  elements.playerShell.style.setProperty("--quality-width", `${width}px`);
+  elements.playerShell.style.setProperty("--quality-height", `${height}px`);
+  elements.playerShell.style.setProperty("--quality-scale", String(scale));
+}
+
+function setQualityMode(mode) {
+  if (mode !== "original" && !QUALITY_SIZES[mode]) return;
+  qualityMode = mode;
+  elements.playerShell.dataset.qualityMode = mode;
+  updatePlayerSizing();
+  render();
 }
 
 async function broadcastList() {
@@ -222,6 +255,7 @@ async function advance({ autoplay }) {
 function validCommand(payload) {
   const simple = new Set(["play", "pause", "cancel_current", "key_up", "key_down", "key_reset", "tempo_down", "tempo_reset", "tempo_up", "open_list", "close_list"]);
   if (simple.has(payload.action)) return true;
+  if (payload.action === "quality_mode") return payload.mode === "original" || Object.prototype.hasOwnProperty.call(QUALITY_SIZES, payload.mode);
   if (payload.action === "seek_forward") return payload.seconds === 5 || payload.seconds === undefined;
   if (["enqueue", "enqueue_priority"].includes(payload.action)) return isValidSong(payload.item);
   if (payload.action === "cancel_queued") return typeof payload.id === "string";
@@ -245,6 +279,7 @@ async function handleCommand(payload) {
     case "tempo_up": changeTempo(payload.action); break;
     case "open_list": setListOpen(true); break;
     case "close_list": setListOpen(false); break;
+    case "quality_mode": setQualityMode(payload.mode); break;
     case "enqueue": {
       const wasEmpty = songs.length === 0;
       songs.push({ id: payload.item.id, url: payload.item.url, title: payload.item.title.trim() });
@@ -352,5 +387,9 @@ youtubeApi.onerror = () => showNotice(t("youtubeLoadFailed"), true);
 document.head.append(youtubeApi);
 
 window.addEventListener("beforeunload", () => channel.close());
-window.addEventListener("resize", updateTopMarquees);
+window.addEventListener("resize", () => {
+  updateTopMarquees();
+  updatePlayerSizing();
+});
+if ("ResizeObserver" in window) new ResizeObserver(updatePlayerSizing).observe(elements.playerShell);
 render();

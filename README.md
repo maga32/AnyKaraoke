@@ -4,7 +4,11 @@
 
 [English](README.md) · [한국어](README.ko.md) · [日本語](README.ja.md)
 
-AnyKaraoke turns a browser into a karaoke main screen and another phone into its remote. It is a static HTML, CSS, and JavaScript application that plays embeddable YouTube videos and exchanges commands through [dweet.cc](https://dweet.cc/), without a dedicated application server.
+With AnyKaraoke, you can start a karaoke party wherever you are.
+
+Sing with family at home, have fun with friends at a party, or bring the music along on a trip or car ride—turn any screen into your own karaoke experience.
+
+Everyone can use their own phone as a remote. There is no need to pass a single remote around: each person can easily queue songs and control the music right from their phone.
 
 Open AnyKaraoke: [https://AnyKaraoke.pages.dev/](https://AnyKaraoke.pages.dev/)
 

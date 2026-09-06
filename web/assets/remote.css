@@ -21,6 +21,11 @@ button { color:inherit; -webkit-tap-highlight-color:transparent; }
 .playback-grid { grid-template-columns:repeat(2,1fr); }
 .key-grid { grid-template-columns:repeat(3,1fr); }
 .display-grid { grid-template-columns:repeat(2,1fr); }
+.quality-control { margin-top:18px; padding-top:17px; border-top:1px solid #29242d; }
+.quality-control h3 { margin:0; font-size:13px; }
+.quality-control p { margin:5px 0 11px; color:#817a86; font-size:11px; line-height:1.45; }
+.quality-grid { grid-template-columns:repeat(3,1fr); }
+.quality-grid button { min-height:48px; }
 .button-grid button,.reserve-actions button { min-height:58px; border:1px solid #342e38; border-radius:14px; background:#17141b; font-weight:700; cursor:pointer; }
 .button-grid button span { display:inline-block; margin-right:8px; color:#a59eaa; }
 .button-grid button.primary,.reserve-actions .primary { border-color:#dd2850; background:linear-gradient(135deg,#fa4165,#c71c47); box-shadow:0 9px 25px #d3214940; }

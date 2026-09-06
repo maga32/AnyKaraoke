@@ -4,7 +4,11 @@
 
 [English](README.md) · [한국어](README.ko.md) · [日本語](README.ja.md)
 
-AnyKaraoke는 브라우저를 노래방 메인 화면으로 만들고, 다른 휴대폰을 리모컨으로 사용하는 서비스입니다. 별도의 애플리케이션 서버 없이 HTML, CSS, JavaScript로 동작하며, 외부 재생이 허용된 YouTube 영상을 재생하고 [dweet.cc](https://dweet.cc/)를 통해 명령을 주고받습니다.
+AnyKaraoke와 함께라면 어디서든 즐거운 노래방이 시작됩니다.
+
+집에서 가족과 함께할 때도, 친구들과 파티를 즐길 때도, 여행지나 자동차 안에서도 원하는 화면을 노래방으로 만들어 보세요.
+
+함께하는 사람들은 각자의 휴대폰을 리모컨처럼 사용할 수 있습니다. 한 대의 리모컨을 돌려 쓸 필요 없이 누구나 자신의 휴대폰으로 노래를 예약하고 편리하게 조작할 수 있습니다.
 
 AnyKaraoke 열기: [https://AnyKaraoke.pages.dev/](https://AnyKaraoke.pages.dev/)
 
